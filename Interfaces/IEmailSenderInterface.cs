@@ -1,4 +1,4 @@
 public interface IEmailSenderInterface
 {
-    Task emailViewModel(string Email, string Subject, string Message);
+    Task SendEmailAsync(string Email, string Subject, string Message);
 }

@@ -1,9 +1,13 @@
+using EmailSMTP.Helpers;
+using EmailSMTP.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // Email
 builder.Services.AddTransient<IEmailSenderInterface, EmailSenderService>();
+builder.Services.Configure<EmailHelper>(builder.Configuration.GetSection("SMTP_Credientials"));
 
 var app = builder.Build();
 

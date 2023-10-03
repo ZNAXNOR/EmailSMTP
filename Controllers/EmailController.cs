@@ -5,17 +5,17 @@ namespace EmailSMTP.Controllers
 {
     public class EmailController : Controller
     {
-        private readonly IEmailSenderInterface emailSender;
+        private readonly IEmailSenderInterface _emailSender;
 
         public EmailController(IEmailSenderInterface emailSender)
         {
-            this.emailSender = emailSender;
+            _emailSender = emailSender;
         }
 
         [HttpPost]
         public async Task<IActionResult> Index(EmailViewModel emailViewModel)
         {
-            await emailSender.emailViewModel(emailViewModel.Email, emailViewModel.Subject, emailViewModel.Message);
+            await _emailSender.SendEmailAsync(emailViewModel.Email, emailViewModel.Subject, emailViewModel.Message);
             return View();
         }
 
