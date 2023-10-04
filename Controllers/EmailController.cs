@@ -15,7 +15,12 @@ namespace EmailSMTP.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(EmailViewModel emailViewModel)
         {
-            await _emailSender.SendEmailAsync(emailViewModel.Email, emailViewModel.Subject, emailViewModel.Message);
+            for (int count = 0; count < 3; count++)
+            {
+                await _emailSender.SendEmailAsync(emailViewModel.Email, emailViewModel.Subject, emailViewModel.Message);
+
+                Thread.Sleep(TimeSpan.FromSeconds(5));
+            }                
             return View();
         }
 
