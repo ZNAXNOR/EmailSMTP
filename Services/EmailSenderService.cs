@@ -35,7 +35,7 @@ namespace EmailSMTP.Services
             Credentials = new NetworkCredential(username, password)
         };
         return client.SendMailAsync(
-               new MailMessage(from: username,
+               new MailMessage(from: "DoNotReply < " + username + " > ",
                                to: toEmail,
                                subject,
                                message
